@@ -6,12 +6,12 @@
 
 ***需要注意的是，搜索引擎蜘蛛就相当于不支持cookie的浏览器
 
-###使用方法
+###使用方法<br>
 
-$redis = new Redis();
-$redis->open("127.0.0.1");
+$redis = new Redis();<br>
+$redis->open("127.0.0.1");<br>
 
-$session_handler = new Session_Redis($redis);
-session_set_save_handler($session_handler);
-/** 在session_start之前执行上面的代码 **/
-session_start();
+$session_handler = new Session_Redis($redis);<br>
+session_set_save_handler($session_handler);<br>
+/** 在session_start之前执行上面的代码 **/<br>
+session_start();<br>
