@@ -5,3 +5,13 @@
 场景如下，假设一个浏览器不支持cookie，那么每访问一次网站中的页面（有session_start的页面）都会生成一个session_id，并且会将这个session_id保存到redis中，值是一个空的字符串，假设一个网站有几万的访问量，那么一天时间就会产生几十万的空session，占用大量的redis空间，而自己写的这个SessionHandlerInterface则可以解决这个问题，具体请看SessionHandlerInterface::write()方法
 
 ***需要注意的是，搜索引擎蜘蛛就相当于不支持cookie的浏览器
+
+###使用方法
+
+$redis = new Redis();
+$redis->open("127.0.0.1");
+
+$session_handler = new Session_Redis($redis);
+session_set_save_handler($session_handler);
+/** 在session_start之前执行上面的代码 **/
+session_start();
