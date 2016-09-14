@@ -3,15 +3,3 @@
 如果要使用redis来存储SESSION，最方便的方法是在php.ini中设置session.save_handler为redis。之所以要自己写，主要是为了解决空session填满redis的问题。
 
 场景如下，假设一个浏览器不支持cookie，那么每访问一次网站中的页面（有session_start的页面）都会生成一个session_id，并且会将这个session_id保存到redis中，值是一个空的字符串，假设一个网站有几万的访问量，那么一天时间就会产生几十万的空session，占用大量的redis空间，而自己写的这个SessionHandlerInterface则可以解决这个问题，具体请看SessionHandlerInterface::write()方法
-
-下面是我们边redis中存储的php session的key，这些key对应的值全是空字符串
-29190) "PHPREDIS_SESSION:m7u9ug340n3ll3s2qb95lopfm1"
-29191) "PHPREDIS_SESSION:o8tcvgr9ebasp60q98tlqm9vc5"
-29192) "PHPREDIS_SESSION:qafmbi6ou2gn6iqihcpnbhfsv4"
-29193) "PHPREDIS_SESSION:1ku8hlfh0p9ilhkv8heul5tup1"
-29194) "PHPREDIS_SESSION:4tqst3i1j31hn66ffna3psu2a7"
-29195) "PHPREDIS_SESSION:5ob7n4phgqc01k26hgub8qaue5"
-29196) "PHPREDIS_SESSION:5sgvm4t4qbs4v9mh2kqb5phtm7"
-29197) "PHPREDIS_SESSION:8q5jb05aengq945phc1db2u8d1"
-29198) "PHPREDIS_SESSION:sn5v119g94hvp20abuq00h6rn2"
-29199) "PHPREDIS_SESSION:87ihcr44gurb6mp6sb0362dqh4"
