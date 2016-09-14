@@ -15,3 +15,5 @@ $session_handler = new Session_Redis($redis);<br>
 session_set_save_handler($session_handler);<br>
 /** 在session_start之前执行上面的代码 **/<br>
 session_start();<br>
+
+关于new Redis()的使用方法，请参考https://github.com/phpredis/phpredis
